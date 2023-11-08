@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-// use App\Http\Controllers\Controller;
-use App\Http\Controllers\Admin\BaseController as BaseController;
+use App\Http\Controllers\admin\BaseController as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
