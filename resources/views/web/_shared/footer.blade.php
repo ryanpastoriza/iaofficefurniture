@@ -41,10 +41,10 @@
 	    <div class="col-6 col-lg-2 offset-lg-1">
 	        <h5 class="link-light">Quick Links</h5>
 	        <ul class="list-unstyled small mt-4">
-	          <li class="mb-2"><a class="link-secondary" href="">Home</a></li>
-	          <li class="mb-2"><a class="link-secondary" href="">Shop</a></li>
-	          <li class="mb-2"><a class="link-secondary" href="">Contact Us</a></li>
-	          <li class="mb-2"><a class="link-secondary" href="">About Us</a></li>
+	          <li class="mb-2"><a class="link-secondary" href="{{ route('home') }}">Home</a></li>
+	          <li class="mb-2"><a class="link-secondary" href="{{ route('shop') }}">Shop</a></li>
+	          <li class="mb-2"><a class="link-secondary" href="{{ route('contact-us') }}">Contact Us</a></li>
+	          <li class="mb-2"><a class="link-secondary" href="{{ route('about-us') }}">About Us</a></li>
 	        </ul>
 	    </div>
 
