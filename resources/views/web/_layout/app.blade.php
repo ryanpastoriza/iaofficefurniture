@@ -10,7 +10,8 @@
 	<meta name="keywords" content="furniture, office furniture, tables, chairs">
 
 <!-- 	<link rel="preconnect" href="https://fonts.gstatic.com"> -->
-	<link rel="shortcut icon" href="" />
+<!-- 	<link rel="shortcut icon" href="" /> -->
+<link rel="icon" href="{{ URL::to('/') }}/img/icon-ianda.webp">
 
 	<link rel="canonical" href="" />
 
