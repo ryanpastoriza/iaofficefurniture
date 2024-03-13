@@ -7,27 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Str;
+use App\Http\Resources\CategoryCollection as CategoryResource;
 
 class HomeController extends Controller {
 
     public function index() {
 
+        $categories = Category::where(['parent_category' => 0])->get();
+        $subcategories = Category::where('parent_category', '>', 0)->orderby('parent_category')->limit(2)->get();
     	$product = new Product();
-    	$category = new Category();
-    	$featuredProducts = $product->getFeaturedProducts();
+        $products = $product->getFeaturedProducts();
 
-    	$categories = $category->parentCategory();
-
-    	  // echo '<pre>';
-       //      var_export($categories->toArray());
-       //      echo '</pre>';
-
-    	
     	return view('web.home')->with([
-			'title' => 'Home', 
-			'segment' => '',
+			'title' => 'I&A Office Furniture Philippines : Quality Office Furniture',
 			'categories' => $categories,
-			'featuredProducts' => $featuredProducts
+            'subcategories' => $subcategories,
+			'featuredProducts' => $products
 		]);
     }
 

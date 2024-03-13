@@ -5,14 +5,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="I and A furniture shop">
-	<meta name="author" content="furnitures">
-	<meta name="keywords" content="furniture, office furniture, tables, chairs">
+	<meta name="description" content="I&amp;A Office Furniture Shop">
+	<meta name="author" content="I&amp;A Office Furniture Shop">
+	<meta name="keywords" content="furniture, office furniture, tables, chairs, partitions">
+	<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" href="{{ URL::to('/') }}/img/icon-ianda.webp" alt="I&A Office Furniture Icon">
 
-<!-- 	<link rel="preconnect" href="https://fonts.gstatic.com"> -->
-	<link rel="shortcut icon" href="" />
-
-	<link rel="canonical" href="" />
+	<link rel="canonical" href="https://iaofficefurniture.com"/>
 
 	<title>{{ $title }}</title>
 	@include('web._includes.styles')

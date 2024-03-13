@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid p-0">
 	<div class="row">
-		<category></category>
+		<router-view />
 	</div>
 </div>
 @endsection

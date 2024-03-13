@@ -5,5 +5,7 @@
 <link href="{{ asset('plugins/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
 <link rel="stylesheet" href="{{ asset('plugins/glightbox/css/glightbox.min.css') }}">
-<link rel="stylesheet" href="{{ mix('css/sweetalert2.min.css') }}">
+<link href="{{ asset('plugins/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/jquery.paginate/jquery.paginate.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">

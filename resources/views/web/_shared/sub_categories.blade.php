@@ -1,40 +1,21 @@
-<section>
-  <div class="container">
-  	@foreach ( $categories as $category )
-		@if( count($category->subCategories) > 0 )
-
-			<div class="row g-3 justify-content-start align-items-center mb-3">
-				<div class="col-auto">
-					<div class="section-title-sm">{{ Str::title($category->name) }}</div>
-		  		</div>
-		  		<div class="col">
-					<div class="view-all">
-						<a href="{{ route('shop.category', $category->slug) }}" class="btn btn-light btn-sm">View All <i class="fa-solid fa-caret-right"></i> </a>
-					</div>
-		  		</div>
-			</div>
-		    
-		    <div class="row g-3 mb-3">
-		    @foreach ( $category->subCategories as $subCategory )
-
-				<div class="col-6 col-sm-3 col-md-3 col-lg-2 mb-1">
-					<a href="{{ route('shop.category', $subCategory->slug) }}">
-						<div class="product-item">
-						  	
-						  	<div class="pi-img">
-						  		<img src="{{ $subCategory->image }}">
-						  	</div>
-
-							<div class="pi-info text-center">
-								<div class="pi-code">{{ Str::title($subCategory->name) }}</div>
-							</div>
-
-						</div>
-					</a>
+<div class="col-12 mb-3">
+	<div class="sc-slider swiper">
+	<div class="swiper-wrapper">
+	@foreach ($subcategories as $subcategory)
+		<div class="swiper-slide">
+			<a class="box-item" href="{{ route('shop.category', $subcategory->slug) }}">
+				<div class="ia-image w-100 h-75">
+					<img src="{{ url($subcategory->featuredImage) }}" alt="{{ Str::title($subcategory->name) }} Image">
 				</div>
-			@endforeach
-			</div>
-		@endif
+				<div class="ia-title w-100 text-center d-flex flex-column">
+					<span>{{ Str::title($subcategory->name) }}</span>
+					<span class="text-muted">{{ Str::title($subcategory->parent) }}</span>
+				</div>
+			</a>
+		</div>
 	@endforeach
-  </div>
-</section>
+	</div>
+	<div class="swiper-button swiper-button-prev"></div>
+    <div class="swiper-button swiper-button-next"></div>
+    </div>
+</div>

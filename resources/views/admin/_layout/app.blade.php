@@ -9,7 +9,6 @@
 	<meta name="author" content="furnitures">
 	<meta name="keywords" content="furniture, office furniture, tables, chairs">
 
-	<!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
 	<link rel="shortcut icon" href="" />
 
 	<link rel="canonical" href="" />
@@ -33,7 +32,7 @@
 			<!-- top-nav -->
 			 @include('admin/_includes.top-nav')
 
-			<main class="content" id="app">
+			<main class="content px-5 py-4" id="app">
 				@yield('content')
 			</main>
 

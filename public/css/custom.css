@@ -1,0 +1,24 @@
+.tool-box > .tool {
+    align-items: center;
+    background: #3798DF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.tool-box > .tool:hover{background:#1E5595;cursor: pointer;}
+
+.tool-box > .tool svg {
+    stroke-width: 1.5;
+    color: inherit!important;
+    height: 18px;
+    width: 18px
+}
+
+.tool-box > .tool i {
+    color: inherit;
+    font-size: 18px
+}
