@@ -1,64 +1,102 @@
 @extends('web/_layout.app')
 @section('content')
 
-<main id="main" style="margin-top: 90px;">
 
-@include('web._shared.breadcrumbs')
-
-<section>
-  <div class="container">
-
-    <div class="row g-3 align-items-center mb-3">
-
-    	<div class="col-auto" style="font-size: 13px;">Sort by:</div>
-     	<div class="col-auto">
-	        <select class="form-select form-select-sm">
-	          <option>Default Sorting</option>
-	          <option>Featured</option>
-	          <option>Price - Low to High</option>
-	          <option>Price - High to Low</option>
-	        </select>
-      	</div>
-      	<div class="col-auto" style="font-size: 13px;"><b>{{ count($products) }}</b> Product/s found</div>
-
-    </div>
+<main id="main">
+  <div class="container gx-md-5 py-5">
 
     <div class="row">
+      <div class="col-12">
+        <div class="">Products ({{ count($products) }}) </div>
+        <div class=""></div>
+      </div>
+    </div>
 
-      @if( count($products) > 0 )
+    <hr />
 
-        @foreach ( $products as $product )
+    <div class="row">
+      <div class="col-12 col-sm-3 col-md-3">
+        
+        <div class="widget-sidebar">
+        
+          <h5 class="widget-title mt-2" style="letter-spacing: 0.5px;">Product Categories</h5>
+          <div class="widget-category mt-3">
 
-          <div class="col-2 mb-4">
-            <div class="product-item">
-              <a href="{{ route('shop.product', $product->slug) }}">
-              <div class="pi-img">
-                <img src="{{ $product->img_src['featured'] }}/{{ $product->featured_image }}">
+           <div class="accordion accordion-flush" id="product-categories">
+
+            @foreach ($categories as $category)
+
+              @if( count($category->subcategory) > 0  )
+              <div class="accordion-item">
+
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $category->slug }}" aria-expanded="false" aria-controls="flush-collapseOne"></button>
+                  <a class="" href="{{ route('shop.category', $category->slug) }}">{{ Str::title($category->name) }} </a>
+                </h2>
+
+                <div id="{{ $category->slug }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#product-categories">
+                  <div class="accordion-body">
+                    
+                    <ul class="list-unstyled">
+                       @foreach ($category->subcategory as $subcategory)
+                      <li class="">
+                        <a href="{{ route('shop.category', $category->slug .'/'. $subcategory->slug) }}"> {{ Str::title($subcategory->name) }} </a>
+                      </li>
+                      @endforeach
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+              @else
+              <div class="accordion-item">
+
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" disabled></button>
+                  <a class="" href="{{ route('shop.category', $category->slug) }}">{{ Str::title($category->name) }} </a>
+                </h2>
+
+                <div id="{{ $category->slug }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#product-categories">
+                  <div class="accordion-body">
+                    
+                    <ul class="list-unstyled">
+                       @foreach ($category->subcategory as $subcategory)
+                      <li class="">
+                        <a href="{{ route('shop.category', $category->slug .'/'. $subcategory->slug) }}"> {{ Str::title($subcategory->name) }} </a>
+                      </li>
+                      @endforeach
+                    </ul>
+
+                  </div>
+                </div>
+
               </div>
 
-              <div class="pi-info">
-                <div class="pi-code">{{ $product->product_code }}</div>
-                <div class="pi-name">{{ Str::title($product->product_name) }}</div>
-                <div class="pi-price">&#8369; {{ number_format($product->price, 2) }}</div>
-              </div>
-          	  </a>
+              @endif
+              
 
+            @endforeach
             </div>
+             
 
           </div>
 
-        @endforeach
+        </div>
 
-      @endif
+        <hr />
 
+      </div>
+      <div class="col-12 col-sm-9 col-md-12">
 
+        @include('web._shared.products', $products)
+
+      </div>
     </div>
 
   </div>
-</section>
 
 </main>
 
-@include('web._shared.footer')
-
+@include('web._shared.footer', $categories)
 @endsection

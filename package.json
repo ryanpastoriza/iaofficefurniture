@@ -13,12 +13,14 @@
         "axios": "^0.21",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
+        "postcss": "^8.4.33",
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
-        "jquery": "^3.7.1",
-        "sweetalert2": "^11.7.18",
-        "vue": "^3.3.4"
+        "feather-icons": "^4.29.1",
+        "sweetalert2": "^11.10.4",
+        "vue": "^3.4.15",
+        "vue-router": "^4.0.13",
+        "vue3-select2-component": "^0.1.7"
     }
 }

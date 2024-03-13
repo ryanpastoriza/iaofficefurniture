@@ -1,21 +1,24 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
+import router from './router';
 import helper from './helper';
 import Swal from 'sweetalert2';
-import Category from './components/admin/category/Category.vue';
-import Product from './components/admin/product/Product.vue';
+
+import Categories from './components/admin/category/Categories.vue';
+import Products from './components/admin/product/Products.vue';
 import Inquiry from './components/admin/inquiry/Inquiry.vue';
+import Company from './components/admin/company/Company.vue';
 
 window.Swal = Swal;
 const app = createApp({
 	components: {
-		Category,
-		Product,
-		Inquiry
+		Categories,
+		Products,
+		Inquiry,
+		Company
 	}
 });
 
-
-app.use(helper);
+app.use(helper).use(router);
 app.mount('#app');

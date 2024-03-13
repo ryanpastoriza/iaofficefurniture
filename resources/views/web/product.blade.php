@@ -1,127 +1,101 @@
 @extends('web/_layout.app')
 @section('content')
 
-<main id="main" style="margin-top: 90px;">
 
-@include('web._shared.breadcrumbs')
+<main id="main">
 
-<section>
-  <div class="container">
+<div class="container gx-md-5 py-5">
 
-    <div class="row g-3">
-      
-      <div class="col-12">
+  <div class="row">
+    
+    <div class="col-12 product-summary mt-4 bg-white mb-3">
 
-        <div class="card mb-3 border-0">
-          <div class="row g-0 pd-item">
+      <div class="single-product">
 
-            <div class="col-md-4">
+        <div class="row">
+          
+          <div class="col-lg-6 col-12 col-md-6 product-image d-flex justify-content-center">
+            <img src="{{ url($product->featuredImg) }}" alt="">
+          </div>
 
-              <div class="col-12 d-flex justify-content-center pointer">
-                <img  class="pd-img p-image-lb" src="{{ $product->img_src['featured'].'/'.$product->featured_image }}">    
+          <div class="col-lg-6 col-12 col-md-6 summary d-flex flex-column gap-3">
+            <div class="title">{{ $product->product_code }} - {{ Str::title($product->product_name) }}</div>
+            <div class="d-flex flex-row">
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+            </div>
+            <div class="price">&#8369; {{ number_format($product->price, 2) }}</div>
+            <div class="description">{{ $product->product_description }}</div>
+            <div class="description d-flex flex-column pt-1"> 
+              <div class="label">Category:</div>
+              <div class="value">
+                <span class="badge bg-primary">{{ $product->category->main->name }}</span>
+                <span class="badge bg-primary">{{ $product->category->name }}</span>
               </div>
+            </div>
+            <div class="product-view d-flex flex-row justify-content-start gap-3 border-top py-3" data-price="{{ number_format($product->price, 2) }}" data-product="{{ $product->product_code }}">
+              <button class="btn btn-inquire" data-bs-toggle="offcanvas" data-bs-target="#item-inquiry-form" aria-controls="item-inquiry-form">Inquire Item</button>
+              <button class="btn btn-cart" disabled> <i class="bi bi-cart"></i> Add to Cart</button>
+            </div>
+          </div>
 
-              <div class="col-12 py-3">
-               <div class="d-flex flex-wrap">
-              @if( count($product->other_images) > 0 )
-                @foreach($product->other_images as $img) 
+        </div>
+        
+      </div>
 
-                  <div class="p-2 pd-thumb-cont pointer">
-                    <img class="pd-thumb p-image-lb" src="{{ $product->img_src['others'].'/'.$img }}">
-                  </div>
+    </div>
 
-                @endforeach
-              @endif
-                </div>
-              </div>
+    <hr />
+
+  </div>
+</div>
+
+ <aside class="bd-sidebar">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="item-inquiry-form" aria-labelledby="item-inquiry-form-label">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title" id="">Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+         <div class="row">
+         <div class="col-12 contact">
+             <form class="php-email-form" action="{{ route('inquiry.store') }}" method="post" id="product-inquiry-form">
+              @csrf
+              <input type="hidden" name="page" value="product-details">
+              <input id="inquiry" type="hidden" name="inquiry" />
               
-            </div>
-
-            <div class="col-md-6 ps-4">
-              <div class="card-body">
-                <div class="pb-2 pd-divider">
-                  <div class="pd-category">{{ Str::title($product->category) }}</div>
-                  <div class="pd-name">{{ $product->product_code }} - {{ Str::title($product->product_name) }}</div>
-                  <div class="mt-2 pd-price">&#8369; {{ number_format($product->price, 2) }} </div>
-                  <!-- <div class="mt-2 price"><del>₱ 0.00</del></div> -->
-                  <!-- <div class="mt-2 pd-price">Call for pricing</div> -->
-                </div>
-                @if( $product->dimension )
-                  <div class="mt-2">
-                    <div class="pd-label">Dimension:</div>
-                    <div class="pd-val">{{ $product->dimension }}</div>
-                  </div>
-                @endif
-                @if( $product->materials )
-                  <div class="mt-2">
-                    <div class="pd-label">Materials:</div>
-                    <div class="pd-val">{{ $product->materials }}</div>
-                  </div>
-                @endif
-                @if( $product->product_description )
-                  <div class="mt-2">
-                    <div class="pd-label">Description:</div>
-                    <div class="pd-val">{{ $product->product_description }}
-                    </div>
-                  </div>
-                @endif
-                <div class="mt-4 pb-3">
-                  <button class="btn-inquire rounded-0">Inquire Item</button>
-                </div>
+              <div class="form-group mt-3">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
               </div>
-            </div>
+
+              <div class="form-group mt-3">
+                <input type="number" class="form-control" name="contact_number" placeholder="Contact Number" required>
+              </div>
+
+              <div class="form-group mt-3">
+                <input type="email" class="form-control" name="email_address" placeholder="Email" required>
+              </div>
+
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+
+              <div class="mt-2 text-center">
+                <button type="submit" class="btn-block">Send Message</button>
+              </div>
+            </form>
+          </div>
+          
           </div>
         </div>
-
       </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section class="p-0">
-  <div class="container">
-
-    <div class="row g-3">
-      <div class="col d-flex justify-content-start flex-column mb-3">
-        <div class="section-title">You may also like</div>
-        <!-- <div class="section-subtitle">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</div> -->
-      </div>
-    </div>
-
-    <div class="row">
-
-      @if( count($randomProducts) > 0 )
-
-        @foreach ( $randomProducts as $product )
-
-          <div class="col-2 mb-4">
-            <div class="product-item">
-              <a href="{{ route('shop.product', $product->slug) }}">
-              <div class="pi-img">
-                <img src="{{ $product->img_src }}/{{ $product->featured_image }}">
-              </div>
-
-              <div class="pi-info">
-                <div class="pi-code">{{ $product->product_code }}</div>
-                <div class="pi-name">{{ $product->product_name }}</div>
-                <div class="pi-price">&#8369; {{ number_format($product->price, 2) }}</div>
-              </div>
-              </a>
-            </div>
-
-          </div>
-
-        @endforeach
-
-      @endif
-
-
-    </div>
-
-  </div>
-</section>
+    </aside>
 
 
 <!-- Inquire Item modal -->
@@ -192,7 +166,6 @@
 </div>
 </main>
 
-@include('web._shared.clients')
-@include('web._shared.footer')
+@include('web._shared.footer', $categories)
 
 @endsection

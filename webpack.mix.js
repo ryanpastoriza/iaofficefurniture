@@ -11,9 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js(['resources/js/app.js', 'resources/js/admin/app.js'], 'public/js').vue()
-    .postCss('resources/css/app.css', 'public/css', [
+mix.js(['resources/js/app.js', 'resources/js/admin/app.js'], 'public/js/admin').vue()
+    .postCss('resources/css/app.css', 'public/css/admin', [
         //
     ])
-    .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js')
-    .copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css');
+    .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/admin')
+    .copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css/admin');

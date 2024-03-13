@@ -39,49 +39,7 @@ class CategoryController extends BaseController {
 		return $this->sendResponse($categories, 'Categories');
 	}
 
-	public function store(Request $request) {
-
-		$input = $request->all();
-
-		$category = new Category();
-		$category->name = $input['name'];
-		$category->parent_category = $input['parent_category'];
-		$category->description = $input['description'];
-		$category->slug = strtolower($input['slug']);
-
-
-		if( $request->hasFile('img') ) {
-			$image = $request->file('img');
-			$ext = $image->getClientOriginalExtension();
-			$filename = str_replace(" ", "-", strtolower($category->name)) . '.' . $ext;
-			$image->storeAs('public/uploads/categories/', $filename);
-			$category->image = $filename;
-		}
-
-		$category->save();
-		return $this->sendResponse($category, 'New Category has been created');
-	}
-
-	public function update(Request $request, Category $category) {
-
-		$input = $request->all();
-		$category->name = $input['name'];
-		$category->parent_category = $input['parent_category'];
-		$category->description = $input['description'];
-		$category->slug = strtolower($input['slug']);
-
-		if( $request->hasFile('img') ) {
-			$image = $request->file('img');
-			$ext = $image->getClientOriginalExtension();
-			$filename = str_replace(" ", "-", strtolower($category->name)) . '.' . $ext;
-			$image->storeAs('public/uploads/categories/', $filename);
-			$category->image = $filename;
-		}
-
-		$category->save();
-		return $this->sendResponse($category, 'Category has been updated');
-	}
-
+	
 	public function destroy($id) {
 
 		$categories = Category::whereIn('category_id', explode(',', $id))->get();

@@ -27,15 +27,26 @@
 				Product
 			</li>
 
-			<li class="sidebar-item {{ isset($segment) && $segment == 'products' ? 'active' : '' }}">
-				<a class="sidebar-link" href="{{ route('products') }}">
-			      <i class="align-middle" data-feather="package"></i> <span class="align-middle">Products</span>
+			<li class="sidebar-item {{ isset($segment) && $segment == 'product' ? 'active' : '' }}">
+				<a class="sidebar-link" href="{{ route('product') }}">
+			     	<i class="align-middle" data-feather="grid"></i> <span class="align-middle">Products</span>
 			    </a>
 			</li>
 
 			<li class="sidebar-item {{ isset($segment) && $segment == 'category' ? 'active' : '' }}">
 				<a class="sidebar-link" href="{{ route('category') }}">
 			      <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Categories</span>
+			    </a>
+			</li>
+
+
+			<li class="sidebar-header">
+				Setup
+			</li>
+
+			<li class="sidebar-item {{ isset($segment) && $segment == 'company' ? 'active' : '' }}">
+				<a class="sidebar-link" href="{{ route('company') }}">
+			      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Company</span>
 			    </a>
 			</li>
 

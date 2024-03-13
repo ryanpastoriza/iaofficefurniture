@@ -1,92 +1,94 @@
 @extends('web/_layout.app')
 @section('content')
 
-<main id="main" style="margin-top: 90px;">
+<main id="main">
 
-@include('web._shared.breadcrumbs')
-
-@include('web._shared.parent_categories', $categories)
-
-@include('web._shared.sub_categories', $categories)
-
-@include('web._shared.featured', $featuredProducts)
-
-<!-- <section style="border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1;">
-  <div class="container">
-
-  	<div class="row g-3">
-		<div class="col d-flex justify-content-start flex-column mb-3">
-			<div class="section-title">Products You May Like</div>
-			<div class="section-subtitle">Enjoy our unlimited products at affordable price! Below are our popular products.</div>
-  		</div>
-	</div>
-
+  <div class="container gx-md-5 py-5">
 
     <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-3">
 
-          <div class="col-2 mb-4">
-           
-            <div class="product-item">
-              	
-              	<div class="pi-img">
-              		<img src="{{ URL::to('/') }}/img/mid-back-mesh-chair.jpg">
-              	</div>
+        <div class="widget-sidebar">
+        
+          <h5 class="widget-title mt-2" style="letter-spacing: 0.5px;">Product Categories</h5>
+          <div class="widget-category mt-3">
 
-				<div class="pi-info">
-					<div class="pi-code">CH230A</div>
-					<div class="pi-name">Stackable Visitor Chair</div>
-					<div class="pi-price">&#8369; 10, 904.00</div>
-				</div>
+            <div class="accordion accordion-flush" id="product-categories">
 
+            @foreach ($categories as $category)
+
+              @if( count($category->subcategory) > 0  )
+              <div class="accordion-item">
+
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $category->slug }}" aria-expanded="false" aria-controls="flush-collapseOne"></button>
+                  <a class="" href="{{ route('shop.category', $category->slug) }}">{{ Str::title($category->name) }} </a>
+                </h2>
+
+                <div id="{{ $category->slug }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#product-categories">
+                  <div class="accordion-body">
+                    
+                    <ul class="list-unstyled">
+                       @foreach ($category->subcategory as $subcategory)
+                      <li class="">
+                        <a href="{{ route('shop.category', $category->slug .'/'. $subcategory->slug) }}"> {{ Str::title($subcategory->name) }} </a>
+                      </li>
+                      @endforeach
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+              @else
+              <div class="accordion-item">
+
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" disabled></button>
+                  <a class="" href="{{ route('shop.category', $category->slug) }}">{{ Str::title($category->name) }} </a>
+                </h2>
+
+                <div id="{{ $category->slug }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#product-categories">
+                  <div class="accordion-body">
+                    
+                    <ul class="list-unstyled">
+                       @foreach ($category->subcategory as $subcategory)
+                      <li class="">
+                        <a href="{{ route('shop.category', $category->slug .'/'. $subcategory->slug) }}"> {{ Str::title($subcategory->name) }} </a>
+                      </li>
+                      @endforeach
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+
+              @endif
+              
+
+            @endforeach
             </div>
-          
+             
+
           </div>
 
-            <div class="col-2 mb-4">
-           
-          <div class="product-item">
-              	
-              	<div class="pi-img">
-              		<img src="http://iafurniture.test/storage/uploads/products/1/high-back-mesh-chair.jpg">
-              	</div>
-              	
-				<div class="pi-info">
-					<div class="pi-code">CH230A</div>
-					<div class="pi-name">Stackable Visitor Chair</div>
-					<div class="pi-price">&#8369; 10, 904.00</div>
-				</div>
+        </div>
 
-            </div>
-          
-          </div>
+        <hr />
 
-          <div class="col-2 mb-4">
+      </div>
+      <div class="col-12 col-sm-12 col-md-7 col-lg-9">
 
-          	    <div class="product-item">
-              	
-              	<div class="pi-img">
-              		<img src="http://iafurniture.test/storage/uploads/products/2/file-storage-cabinet.jpg">
-              	</div>
-              	
-				<div class="pi-info">
-					<div class="pi-code">CH230A</div>
-					<div class="pi-name">Stackable Visitor Chair</div>
-					<div class="pi-price">&#8369; 10, 904.00</div>
-				</div>
+        @include('web._shared.products', $products)
 
-            </div>
-          
-          </div>
+      </div>  
+      
     </div>
 
   </div>
-</section> -->
 
 </main>
 
-@include('web._shared.clients')
-@include('web._shared.footer')
-
-
-
+@include('web._shared.footer', $categories)
 @endsection
