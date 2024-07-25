@@ -29,8 +29,9 @@ class ProductCollection extends JsonResource
             'directory' => [
                 'images' => $this->getStorageUrl()
             ],
-            // 'dimension' => $this->dimension,
-            // 'materials' => $this->materials,
+            'dimension' => $this->dimension,
+            'materials' => $this->materials,
+            'color' => $this->color,
             'status' => $this->status
         ];
     }

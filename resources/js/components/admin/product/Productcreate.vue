@@ -61,6 +61,7 @@
 									<label class="form-label fw-semibold">Price</label>
 									<input class="form-control form-control-lg" type="number" v-model="product.price" :disabled="product.on_demand == 1" placeholder="0.00" />
 								</div>
+
 							</div>
 
 							<div class="mb-3">
@@ -79,7 +80,7 @@
 				</div>
 			</div>
 
-			<div class="card border d-none">
+			<div class="card border">
 				<div class="card-header border-bottom">
 					<h5 class="card-title mb-0 text-body">Product Specifications</h5>
 				</div>
@@ -90,12 +91,17 @@
 
 							<div class="mb-3 mt-3">
 								<label class="form-label fw-semibold">Dimension</label>
-								<input class="form-control form-control-lg" type="text" v-model="product.dimension" disabled />
+								<input class="form-control form-control-lg" type="text" v-model="product.dimension" />
+							</div>
+
+							<div class="mb-3 mt-3">
+								<label class="form-label fw-semibold">Color</label>
+								<input class="form-control form-control-lg" type="text" v-model="product.color" />
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label fw-semibold">Materials</label>
-								<textarea class="form-control form-control-lg" rows="3" v-model="product.materials" disabled></textarea>
+								<textarea class="form-control form-control-lg" rows="3" v-model="product.materials"></textarea>
 							</div>
 
 						</div>
@@ -217,8 +223,9 @@ export default {
 				product_code: null,
 				product_name: null,
 				product_description: null,
-				// dimension: null,
-				// materials: null,
+				dimension: null,
+				materials: null,
+				color: null,
 				status: true,
 				slug: null,
 				featured: false
@@ -253,8 +260,9 @@ export default {
 			formData.append('product_code', this.product.product_code);
 			formData.append('product_name', this.product.product_name);
 			formData.append('product_description', this.product.product_description);
-			// formData.append('dimension', this.product.dimension);
-			// formData.append('materials', this.product.materials);
+			formData.append('dimension', this.product.dimension);
+			formData.append('materials', this.product.materials);
+			formData.append('color', this.product.color);
 			formData.append('slug', this.product.slug);
 			formData.append('featuredimg', this.image_featured);
 			formData.append('image_1', this.image_1);
@@ -273,8 +281,6 @@ export default {
 
 			await axios.post(this.baseUrl() + 'api/product', formData)
 	          .then((response) => {
-
-	          	console.log(response.data.success);
 
 	          	if( response.data.success ) {
 
@@ -315,8 +321,9 @@ export default {
 			this.product.product_code = null;
 			this.product.product_name = null;
 			this.product.product_description = null;
-			// this.product.dimension = null;
-			// this.product.materials = null;
+			this.product.dimension = null;
+			this.product.materials = null;
+			this.product.color = null;
 			this.product.slug = null;
 			this.product.featured = false;
 			this.product.status = true;

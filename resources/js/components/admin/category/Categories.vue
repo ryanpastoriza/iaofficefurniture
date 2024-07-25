@@ -37,7 +37,11 @@
                         <div class="vr"></div>
 
                         <div class="d-flex align-items-center gap-2">
-                           
+                                
+                                <button type="button" class="btn btn-outline-success">
+                                    <i class="align-middle" data-feather="import-cw"></i>
+                                </button>
+
                                 <button type="button" class="btn btn-outline-success">
                                     <i class="align-middle" data-feather="refresh-cw"></i>
                                 </button>

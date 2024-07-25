@@ -46,8 +46,9 @@ class ProductController extends BaseController
 		$product->product_name = $request->input('product_name');
 		$product->product_description = $request->input('product_description');
 		$product->slug = Str::slug($product->product_name . ' ' . $product->product_code);
-		// $product->dimension = $request->input('dimension');
-		// $product->materials = $request->input('materials');
+		$product->dimension = $request->input('dimension');
+		$product->materials = $request->input('materials');
+		$product->color = $request->input('color');
 		$product->featured = $request->input('featured');
 		$product->status = $request->input('status');
 		$product->save();
@@ -95,8 +96,9 @@ class ProductController extends BaseController
 		$product->product_name = $request->input('product_name');
 		$product->product_description = $request->input('product_description');
 		$product->slug = Str::slug($product->product_name . ' ' . $product->product_code);
-		// // $product->dimension = $request->input('dimension');
-		// // $product->materials = $request->input('materials');
+		$product->dimension = $request->input('dimension');
+		$product->materials = $request->input('materials');
+		$product->color = $request->input('color');
 		$product->featured = $request->input('featured');
 		$product->status = $request->input('status');
 		$product->save();

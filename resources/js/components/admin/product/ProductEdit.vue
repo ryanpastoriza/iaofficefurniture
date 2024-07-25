@@ -78,7 +78,7 @@
 				</div>
 			</div>
 
-			<div class="card border d-none">
+			<div class="card border">
 				<div class="card-header border-bottom">
 					<h5 class="card-title mb-0 text-body">Product Specifications</h5>
 				</div>
@@ -89,12 +89,17 @@
 
 							<div class="mb-3 mt-3">
 								<label class="form-label fw-semibold">Dimension</label>
-								<input class="form-control form-control-lg" type="text" v-model="product.dimension" disabled />
+								<input class="form-control form-control-lg" type="text" v-model="product.dimension" />
+							</div>
+
+							<div class="mb-3 mt-3">
+								<label class="form-label fw-semibold">Color</label>
+								<input class="form-control form-control-lg" type="text" v-model="product.color" />
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label fw-semibold">Materials</label>
-								<textarea class="form-control form-control-lg" rows="3" v-model="product.materials" disabled></textarea>
+								<textarea class="form-control form-control-lg" rows="3" v-model="product.materials"></textarea>
 							</div>
 
 						</div>
@@ -221,8 +226,9 @@ export default {
 				product_code: null,
 				product_name: null,
 				product_description: null,
-				// dimension: null,
-				// materials: null,
+				dimension: null,
+				materials: null,
+				color: null,
 				status: null,
 				slug: null,
 				featured: false
@@ -259,8 +265,9 @@ export default {
 				formData.append('product_code', this.product.product_code);
 				formData.append('product_name', this.product.product_name);
 				formData.append('product_description', this.product.product_description);
-				// formData.append('dimension', this.product.dimension);
-				// formData.append('materials', this.product.materials);
+				formData.append('dimension', this.product.dimension);
+				formData.append('materials', this.product.materials);
+				formData.append('color', this.product.color);
 				formData.append('slug', this.product.slug);
 				formData.append('featuredimg', this.image_featured);
 				formData.append('image_1', this.image_1);
@@ -301,6 +308,9 @@ export default {
 	            this.product.status = ( this.product.status) ? true : false;
 	            this.product.featured = ( this.product.featured) ? true : false;
 	            this.product.price = this.product.price.toFixed(2);
+	   //          this.product.dimension =  
+				// this.product.materials =  
+				// this.product.color =  
 	            this.image_featured = this.baseUrl() + this.product.directory.images + this.product.featured_image;
 	            this.image_1 = this.baseUrl() + this.product.directory.images + 'image_1.jpg';
 	            this.image_2 = this.baseUrl() + this.product.directory.images + 'image_2.jpg';

@@ -27,8 +27,9 @@ class Product extends Model
         'featured_image',
         'slug',
         'featured',
-        // 'dimension',
-        // 'materials',
+        'dimension',
+        'materials',
+        'color',
         'status'
     ];
 
